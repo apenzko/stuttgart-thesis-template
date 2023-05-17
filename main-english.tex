@@ -6,11 +6,11 @@
 
 
 % vv  scroll down to line 200 for content  vv
-
+% template from https://latextemplates.github.io/scientific-thesis-template/ 
 
 \let\ifdeutsch\iffalse
 \let\ifenglisch\iftrue
-\input{pre-documentclass}
+\input{preamble/pre-documentclass}
 \documentclass[
   % fontsize=11pt is the standard
   a4paper,  % Standard format - only KOMAScript uses paper=a4 - https://tex.stackexchange.com/a/61044/9075
@@ -21,23 +21,34 @@
   headsepline,
   cleardoublepage=empty,
   parskip=half,
-  %               draft    % um zu sehen, wo noch nachgebessert werden muss - wichtig, da Bindungskorrektur mit drin
+  % draft: um zu sehen, wo noch nachgebessert werden muss - wichtig, da Bindungskorrektur mit drin
   draft=false
 ]{scrbook}
-\input{config}
+\input{preamble/config}
 
+%%%
+% Deckblattstyle
+% cover template adapted from scientific-thesis-cover
+% The package scientific-thesis-cover (https://ctan.org/pkg/scientific-thesis-cover) was added to CTAN on January 1, 2018.
+%
+\ifdeutsch
+	\PassOptionsToPackage{language=german}{cover}
+\else
+	\PassOptionsToPackage{language=english}{cover}
+\fi
 
 \usepackage[
+  logo={graphics/USTUTT_logo.pdf},
   title={Is Oil the future?},
-  author={Lars K.},
+  author={Max Mustermann},
   type=bachelor,
-  institute=iaas, % or other institute names - or just a plain string using {Demo\\Demo...}
-  course={Medieninformatik},
-  examiner={Prof.\ Dr.\ Uwe Fessor},
-  supervisor={Dipl.-Inf.\ Roman Tiker,\\Dipl.-Inf.\ Laura Stern,\\Otto Normalverbraucher,\ M.Sc.},
-  startdate={July 5, 2018},
-  enddate={January 5, 2019}
-]{scientific-thesis-cover}
+  institute=vis, % or other institute names - or just a plain string using {Demo\\Demo...}
+  course=cs, % predefined in cover.sty or plain string {Informatik},
+  examiner={Prof.\ Dr.\ Andreas Bulling},
+  supervisor={Anna Penzkofer,\ M.Sc.},
+  startdate={May 5, 2023},
+  enddate={November 5, 2023}
+]{cover}
 
 \input{acronyms}
 
@@ -64,7 +75,7 @@
 
 %\VerbatimFootnotes %verbatim text in Fußnoten erlauben. Geht normalerweise nicht.
 
-\input{commands}
+\input{preamble/commands}
 \pagenumbering{arabic}
 \Titelblatt
 
@@ -205,34 +216,29 @@
 
 
 \chapter{Introduction}
+\label{chap:intro}
 
-This thesis starts with \cref{chap:k2}.
+This thesis starts with \cref{chap:intro}.
 
 We can also typeset \verb|<text>verbatim text</text>|.
 Backticks are also rendered correctly: \verb|`words in backticks`|.
 
-\chapter{Chapter Two}
-\label{chap:k2}
-
 LaTeX hints are provided in \cref{chap:latexhints}.
 
-\blinddocument
-
 \chapter{Related Work}
-
 Describe relevant scientific literature related to your work.
 
 \chapter{Conclusion and Outlook}
-\label{chap:zusfas}
+\label{chap:outlook}
 
 \section*{Outlook}
 
 \printbibliography
 
-All links were last followed on March 17, 2018.
+All links were last followed on March 17, 2023.
 
 \appendix
-\input{latexhints-english}
+\input{preamble/latexhints-english}
 
 \pagestyle{empty}
 \renewcommand*{\chapterpagestyle}{empty}
